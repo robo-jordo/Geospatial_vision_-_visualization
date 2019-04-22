@@ -9,7 +9,7 @@ import numpy as np
 
 path=Path(".")
 
-path=path.glob("hey/*.jpg")
+path=path.glob("hey5/*.jpg")
 
 images=[]
 finalarray=[]
@@ -20,7 +20,7 @@ backSub3 = cv2.bgsegm.createBackgroundSubtractorMOG()
 # files=(path.glob(("hey/*.jpg")).sort()
 # print(files)
 
-filenames = glob.glob("hey/*.jpg")
+filenames = glob.glob("hey5/*.jpg")
 filenames.sort()
 
 #images = [cv2.imread(img) for img in filenames]
@@ -102,8 +102,8 @@ for i in images:
 	#cv2.imshow('FG Mask4', fgMask4)
 	# cv2.waitKey(0)
 
-smear_min_r =  6
-smear_max_r =  10
+smear_min_r =  5
+smear_max_r =  11
 smear_min_a =  3.14*smear_min_r**2
 smear_max_a =  3.14*smear_max_r**2
 avg = np.zeros((400,400),np.float)
@@ -112,18 +112,29 @@ count = 0
 for i in range(len(images)):
 	avg += np.array(finalarray[i],dtype=np.float)
 	count +=1
-	if count==20 or i ==0:
+	if count == 40:
 		newavg = avg/count
 		newavg = np.array(np.round(newavg),dtype=np.uint8)
-		threshnew = cv2.adaptiveThreshold(newavg,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY, 101, 101)
+		threshnew = cv2.adaptiveThreshold(newavg,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY, 89, 89)
 		# ret,threshnew = cv2.threshold(final,200,255,cv2.THRESH_BINARY)
 		newinv = cv2.bitwise_not(threshnew)
-		avg = np.zeros((400,400),np.float)
-		count = 0
+		avg -= np.array(finalarray[i-40],dtype=np.float)
+		count = count - 1 
+	else:
+		newavg = avg/count
+		newavg = np.array(np.round(newavg),dtype=np.uint8)
+		threshnew = cv2.adaptiveThreshold(newavg,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY, 89, 89)
+		# ret,threshnew = cv2.threshold(final,200,255,cv2.THRESH_BINARY)
+		newinv = cv2.bitwise_not(threshnew)
 
+	#newinv = cv2.medianBlur(newinv,5)
+	kernel = np.ones((8,8),np.uint8)
+	newinv =  cv2.erode(newinv, kernel)
+	newinv =  cv2.dilate(newinv, kernel)
 	#Contours
 	_,contours,_ = cv2.findContours(newinv,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) 
-
+	if(i == 70):
+		cv2.imwrite("/home/jordan/Desktop/mask5.jpg", newinv)
 	if contours:
 		if (cv2.contourArea(contours[0])>smear_min_a and cv2.contourArea(contours[0])<smear_max_a):
 			smudge = cv2.drawContours(images[i],contours,-1,(0,255,0),2) 
