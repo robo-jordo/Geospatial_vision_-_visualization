@@ -9,7 +9,7 @@ import numpy as np
 
 path=Path(".")
 
-path=path.glob("hey5/*.jpg")
+path=path.glob("cam_3/*.jpg")
 
 images=[]
 finalarray=[]
@@ -20,7 +20,7 @@ backSub3 = cv2.bgsegm.createBackgroundSubtractorMOG()
 # files=(path.glob(("hey/*.jpg")).sort()
 # print(files)
 
-filenames = glob.glob("hey5/*.jpg")
+filenames = glob.glob("cam_3/*.jpg")
 filenames.sort()
 
 #images = [cv2.imread(img) for img in filenames]
