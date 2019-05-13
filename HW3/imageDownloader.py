@@ -13,7 +13,7 @@ class TileDownloader:
 			data = json.load(data_file)
 			key = data['bing-tile-key']
 		print("refreshed")
-		# Get an up to dat url to request images from
+		# Get an up to date url to request images from
 		BASEURL1 = "http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial?output=json&include=ImageryProviders&key="+str(key)
 		f = request.urlopen(BASEURL1).read()
 		data = json.loads(f.decode('utf-8'))
@@ -32,5 +32,5 @@ class TileDownloader:
 		with request.urlopen(self.CALLURL1) as file:
 			saveable_image = Image.open(file)
 		# Save the image retrieved from the URL
-		saveable_image.save('./'+str(name)+'.png')
+		saveable_image.save('./images/'+str(name)+'.png')
 		print("Image saved as " + str(name)+'.png')
