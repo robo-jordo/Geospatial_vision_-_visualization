@@ -98,9 +98,8 @@ class Stitcher():
 		x2 = (tile2[0]-xstart)*256 + int(tile2[2])
 		y1 = (tile1[1]-ystart)*256 + int(tile1[3])
 		y2 = (tile2[1]-ystart)*256 + int(tile2[3])
-		height = y1-y2
-		width = x2-x1
-		cropped = image.crop((x1,y1,x1+width,y1+height))
+		(imx,imy) = image.size
+		cropped = image.crop((x1,(imy-y1),x2,(imy-y2)))
 		cropped.show()
 		cropped.save('./cropped_image.png')
 		print("Cropped Image saved as cropped_image.png")
