@@ -25,7 +25,6 @@ class Stitcher():
 		for i in images_paths:
 			print(i)
 			im = cv2.imread(i)
-			# print(type(im))
 			images.append(im)
 
 		cv_stitcher = cv2.Stitcher_create()
@@ -85,5 +84,23 @@ class Stitcher():
 		final = Image.new('RGB',(wtotal,htotal))
 		for i in range(len(verts)):
 			final.paste(im =verts[i],box = (int((wtotal/len(verts))*i),0))
+		final.save('./stitched_image.png')
 		final.show()
+		print("Stitched Image saved as stitched_image.png")
 		return final
+
+	def cropper(self,image,tile1,tile2,startpoints):
+		xstart = startpoints[0]
+		ystart = startpoints[1]
+		# print(xstart)
+		# print(ystart)
+		x1 = (tile1[0]-xstart)*256 + int(tile1[2])
+		x2 = (tile2[0]-xstart)*256 + int(tile2[2])
+		y1 = (tile1[1]-ystart)*256 + int(tile1[3])
+		y2 = (tile2[1]-ystart)*256 + int(tile2[3])
+		height = y1-y2
+		width = x2-x1
+		cropped = image.crop((x1,y1,x1+width,y1+height))
+		cropped.show()
+		cropped.save('./cropped_image.png')
+		print("Cropped Image saved as cropped_image.png")
