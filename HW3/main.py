@@ -5,8 +5,8 @@ import imageDownloader
 
 down = imageDownloader.TileDownloader()
 seg = segments.Segmentor()
-tile1 = seg.tilegen(-33.907287,18.397682,18)
-tile2 = seg.tilegen(-33.903763,18.403344,18)
+tile1 = seg.tilegen(-33.907287,18.397682,20)
+tile2 = seg.tilegen(-33.903763,18.403344,20)
 
 tiles = seg.segments(tile1[:2],tile2[:2])
 
