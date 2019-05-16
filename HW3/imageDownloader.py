@@ -28,9 +28,14 @@ class TileDownloader:
 		# Insert quadkey to URL request
 		self.CALLURL1 = self.CALLURL.replace("{quadkey}", quadkey)
 		# Open the URL
-		print(self.CALLURL)
+		# print(self.CALLURL1)
 		with request.urlopen(self.CALLURL1) as file:
 			saveable_image = Image.open(file)
+			if (len(saveable_image.info)==0):
+				return False
+			else:
 		# Save the image retrieved from the URL
-		saveable_image.save('./images/'+str(name)+'.png')
-		print("Image saved as " + str(name)+'.png')
+				saveable_image.save('./images/'+str(name)+'.png')
+				print("Tile saved as " + str(name)+'.png')
+				return True
+

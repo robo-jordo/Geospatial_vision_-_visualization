@@ -62,15 +62,15 @@ class Segmentor():
 
 	def quadgen(self, tileX, tileY):
 		binTileX = format(tileX, '#0'+str(self.level+2)+'b')[2:]
-		print(binTileX)
+		# print(binTileX)
 		binTileY = format(tileY, '#0'+str(self.level+2)+'b')[2:]
-		print(binTileY)
+		# print(binTileY)
 		quadkey = ''
 		for i in range(self.level):
 			bit = self.level-i-1
 			quadkey = (str(binTileX)[bit])+quadkey
 			quadkey = (str(binTileY)[bit])+quadkey
-		print(quadkey)
+		# print(quadkey)
 		final = baseconvert.base((int(quadkey,2)),10,4,string=True)
 		while(len(final)!=self.level):
 			final = '0'+final
