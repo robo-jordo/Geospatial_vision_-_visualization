@@ -18,6 +18,10 @@ class Segmentor():
 		tileY = math.floor(pixelY/256)
 		tileX_pix = pixelX - (math.floor(pixelX/256)*256)
 		tileY_pix = pixelY - (math.floor(pixelY/256)*256)
+		# print("tile x: "+str(tileX))
+		# print("tile y: "+str(tileY))
+		# print("tileX pix: " + str(tileX_pix))
+		# print("tileY pix: " + str(tileY_pix))
 		return [tileX, tileY, tileX_pix, tileY_pix]
 
 	def segments(self, tile1, tile2): # tile = [tileX, tileY]
