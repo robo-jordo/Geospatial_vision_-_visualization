@@ -61,4 +61,6 @@ def getBlock(lat1, lon1, lat2, lon2):
 # 	for j in range(len(tiles[i])):
 # 		quadkey = seg.quadgen(tiles[i][j][0],tiles[i][j][1])
 # 		down.download(quadkey,str(i)+str(j))
-getBlock(-33.907287,18.397682,-33.903763,18.403344)
+# getBlock(-33.907287,18.397682,-33.903763,18.403344) #Cape Town
+
+getBlock(41.892211,-87.609901,41.890972,-87.605425)  #Navy Pier

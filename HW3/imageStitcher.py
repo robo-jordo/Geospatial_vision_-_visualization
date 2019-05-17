@@ -87,19 +87,29 @@ class Stitcher():
 		final.save('./stitched_image.png')
 		final.show()
 		print("Stitched Image saved as stitched_image.png")
+		print(final.size)
 		return final
 
 	def cropper(self,image,tile1,tile2,startpoints):
 		xstart = startpoints[0]
 		ystart = startpoints[1]
-		# print(xstart)
-		# print(ystart)
+		print(xstart)
+		print(ystart)
 		x1 = (tile1[0]-xstart)*256 + int(tile1[2])
 		x2 = (tile2[0]-xstart)*256 + int(tile2[2])
 		y1 = (tile1[1]-ystart)*256 + int(tile1[3])
 		y2 = (tile2[1]-ystart)*256 + int(tile2[3])
+		print(x1)
+		print(x2)
+		print(y1)
+		print(y2)
 		(imx,imy) = image.size
-		cropped = image.crop((x1,(imy-y1),x2,(imy-y2)))
+		print("image x size: " + str(imx))
+		print("image y size: " + str(imy))
+		if (y1>y2):
+			cropped = image.crop((x1,imy-y1,x2,imy-y2))
+		else:
+			cropped = image.crop((x1,imy-y2,x2,imy-y1))
 		cropped.show()
 		cropped.save('./cropped_image.png')
 		print("Cropped Image saved as cropped_image.png")
