@@ -16,7 +16,6 @@ seg = segments.Segmentor()
 stitched = imageStitcher.Stitcher()
 
 def getBlock(lat1, lon1, lat2, lon2):
-
 	too_high = True
 	img_check = False
 	level = 23
