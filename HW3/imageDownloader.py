@@ -17,6 +17,7 @@ class TileDownloader:
 		BASEURL1 = "http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Aerial?output=json&include=ImageryProviders&key="+str(key)
 		f = request.urlopen(BASEURL1).read()
 		data = json.loads(f.decode('utf-8'))
+		print(data)
 		self.CALLURL = data['resourceSets'][0]['resources'][0]['imageUrl']
 		print(self.CALLURL)
 		subDomains = data['resourceSets'][0]['resources'][0]['imageUrlSubdomains']

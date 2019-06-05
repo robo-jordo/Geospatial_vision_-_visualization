@@ -47,19 +47,6 @@ def getBlock(lat1, lon1, lat2, lon2):
 			stitched.cropper(stitched_image,tile1,tile2,tiles[0][0])
 			too_high == False
 			break
-# tile1 = seg.tilegen(-33.907287,18.397682,18)
-# tile2 = seg.tilegen(-33.903763,18.403344,18)
+ 
 
-
-# tiles = seg.segments(tile1[:2],tile2[:2])
-# # print(tiles[0][0][1])
-# # for i in range(len(tiles)):
-# # 	print("table entry "+str(i)+": "+str(tiles[i]))
-
-# for i in range(len(tiles)):
-# 	for j in range(len(tiles[i])):
-# 		quadkey = seg.quadgen(tiles[i][j][0],tiles[i][j][1])
-# 		down.download(quadkey,str(i)+str(j))
-# getBlock(-33.907287,18.397682,-33.903763,18.403344) #Cape Town
-
-getBlock(41.892211,-87.609901,41.890972,-87.605425)  #Navy Pier
+getBlock(-33.907287,18.397682,-33.903763,18.403344)
