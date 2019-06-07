@@ -17,4 +17,4 @@ Install the following required libraries in anaconda under Python3
 Run the Jupyter Notebook cell by cell to implement the point cloud data processing and pole segmentation.
 
 ## Result
-![Poles](/poles.png)
+![Poles](poles.png)
